@@ -25,4 +25,10 @@ require(["jquery", "cookie"], function($) {
 			location.href = '/index/login';
 		}
 	}
+	
+	
+	//登陆成功获取数据的操作
+	var obj = JSON.parse($.cookie('logInfo'));
+	$('.aside .profile img').attr('src', obj.tc_avatar);
+	$('.aside .profile h4').html(obj.tc_name);
 })

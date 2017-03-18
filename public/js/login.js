@@ -15,8 +15,9 @@ require(["jquery", "cookie"], function($) {
 					var logInfo = JSON.stringify(data.result);
 					// 实现cookie数据的跨页面共享
 					$.cookie('logInfo', logInfo, { path: '/' });
-					location.href = '/index/index'
+					location.href = '/index/index';
 				}
+
 			},
 			error: function(data) {
 				alert("用户名密码错误");
