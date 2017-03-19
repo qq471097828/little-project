@@ -78,27 +78,13 @@
 									<th>编号</th>
 									<th>姓名</th>
 									<th>昵称</th>
-									<th>年龄</th>
+									<th>出生日期</th>
 									<th>性别</th>
-									<th>手机号码</th>
+									<th>电子邮箱</th>
 									<th>操作</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td>赵玉川</td>
-									<td>布头儿</td>
-									<td>28</td>
-									<td>男</td>
-									<td>15901256171</td>
-									<td>
-										<a href="#teacherModal" data-toggle="modal" class="btn btn-info btn-xs">查 看</a>
-										<a href="./teacher_add.html" class="btn btn-info btn-xs">编 辑</a>
-										<a href="javascript::" class="btn btn-warning btn-xs">注 销</a>
-									</td>
-								</tr>
-							</tbody>
+							<tbody id="teacherInfo"></tbody>
 						</table>
 					</div>
 				</div>
@@ -168,6 +154,31 @@
 		<script src="/public/assets/requiresjs/require.js"></script>
 		<!--引入初始化模块路径的js-->
 		<script src="/public/js/common.js"></script>
+		<script src="/public/js/teacher-list.js"></script>
+		<!--教师列表的模板-->
+		<script type="text/template" id="teacherList">
+			 {{each lists as list i}}
+			<tr>
+				<td>{{i+1}}</td>
+				<td>{{list.tc_name}}</td>
+				<td>{{list.tc_roster}}</td>
+				<td>{{list.tc_birthday}}</td>
+				<td>
+					{{if list.tc_gender == 1}}
+					男
+					{{else}}
+					女
+					{{/if}}
+				</td>
+				<td>{{list.tc_email}}</td>
+				<td>
+					<a href="#teacherModal" data-toggle="modal" class="btn btn-info btn-xs">查 看</a>
+					<a href="./teacher_add.html" class="btn btn-info btn-xs">编 辑</a>
+					<a href="javascript::" class="btn btn-warning btn-xs">注 销</a>
+				</td>
+			</tr>
+			{{/each}}
+		</script>
 	</body>
 
 </html>

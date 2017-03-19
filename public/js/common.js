@@ -8,10 +8,15 @@ require.config({
 		nprogress: "assets/nprogress/nprogress",
 		echarts: "assets/echarts/echarts.min",
 		template : "assets/artTemplate/template"
+	},
+	shim : {
+		bootstrap : {
+			deps : ['jquery']
+		}
 	}
 });
 
-require(["jquery", "cookie"], function($) {
+require(["jquery", "template","cookie"], function($,template) {
 	
 	// 控制左侧导航菜单的显示和隐藏
 	$('.navs ul').prev('a').on('click', function() {
@@ -24,6 +29,15 @@ require(["jquery", "cookie"], function($) {
 		if(!flag) {
 			location.href = '/index/login';
 		}
+	}
+	
+	//利用模板字符串的方法来解析页面的内容
+	if($.cookie('logInfo')){
+		var obj = JSON.parse($.cookie('logInfo'));
+		var templateStr = '<div class="avatar img-circle"><img src="{{tc_avatar}}"></div><h4>{{tc_name}}</h4>';
+		var rander = template.compile(templateStr);
+		var html = rander(obj);
+		$(".aside .profile").html(html);
 	}
 		
 })
