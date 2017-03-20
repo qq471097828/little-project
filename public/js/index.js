@@ -1,7 +1,9 @@
-require(["jquery", "echarts", "cookie"], function($, echarts) {
+require(["jquery", "echarts", "tool", "cookie"], function($, echarts, tool) {
+	//loading的写法
+	tool.modalShow();
+	tool.addActive();
 	// 基于准备好的dom，初始化echarts实例
 	var myChart = echarts.init(document.getElementById('main'));
-
 	// 指定图表的配置项和数据
 	var option = {
 		title: {
@@ -24,20 +26,17 @@ require(["jquery", "echarts", "cookie"], function($, echarts) {
 
 	// 使用刚指定的配置项和数据显示图表。
 	myChart.setOption(option);
-
-	//登陆成功获取数据的操作
-	var obj = JSON.parse($.cookie('logInfo'));
-	$('.aside .profile img').attr('src', obj.tc_avatar);
-	$('.aside .profile h4').html(obj.tc_name);
 	//退出按钮的操作
-	$("#logoutBtn").click(function(){
+	$("#logoutBtn").click(function() {
+
+		//	退出的操作
 		$.ajax({
-			type:"post",
-			url:"/api/logout",
+			type: "post",
+			url: "/api/logout",
 			dataType: "json",
-			async:true,
-			success : function(data){
-				if(data.code == 200){
+			async: true,
+			success: function(data) {
+				if(data.code == 200) {
 					location.href = "/index/login";
 				};
 			}

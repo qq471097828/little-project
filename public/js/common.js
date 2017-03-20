@@ -7,7 +7,8 @@ require.config({
 		cookie: "assets/jquery-cookie/jquery.cookie",
 		nprogress: "assets/nprogress/nprogress",
 		echarts: "assets/echarts/echarts.min",
-		template : "assets/artTemplate/template"
+		template : "assets/artTemplate/template",
+		tool : "js/tool"
 	},
 	shim : {
 		bootstrap : {
@@ -16,8 +17,7 @@ require.config({
 	}
 });
 
-require(["jquery", "template","cookie"], function($,template) {
-	
+require(["jquery", "template","tool","cookie"], function($,template,tool) {
 	// 控制左侧导航菜单的显示和隐藏
 	$('.navs ul').prev('a').on('click', function() {
 		$(this).next().slideToggle();
@@ -39,5 +39,4 @@ require(["jquery", "template","cookie"], function($,template) {
 		var html = rander(obj);
 		$(".aside .profile").html(html);
 	}
-		
 })
